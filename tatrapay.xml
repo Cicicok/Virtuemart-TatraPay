@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<extension version="3" type="plugin" group="vmpayment" method="install">
+  <name>VM Payment - TatraPay</name>
+  <creationDate>April 27 2018</creationDate>
+	<author>Richard Forro</author>
+  <authorUrl>https://github.com/Cicicok/Virtuemart-TatraPay</authorUrl>
+  <copyright>Copyright (C) 2018 Richard Forro. All rights reserved.</copyright>
+  <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+  <version>1.0.0</version>
+  <description>TatraPay (Tatra banka Slovakia) payment plugin for Virtuemart</description>
+
+  <scriptfile>install.tatrapay.php</scriptfile>
+  
+  <files>
+      <filename plugin="tatrapay">tatrapay.php</filename>
+      <folder>language</folder>
+      <folder>tatrapay</folder>
+  </files>
+
+  <vmconfig>
+    <fields name="params">          
+      <fieldset name="payment" addfieldpath="/administrator/components/com_virtuemart/fields">
+        <field type="vmtitle" class="cardpay_title" default="VMPAYMENT_TATRAPAY_SETTINGS_LOGO" />
+        <field type="vmtitle" default="VMPAYMENT_TATRAPAY_SETTINGS_SECTION"/>
+        <field name="mid" type="text" default="" label="VMPAYMENT_TATRAPAY_MID"
+                description="VMPAYMENT_TATRAPAY_MID_TIP" required="true"/>		
+				<field name="key" type="textarea" cols="35" rows="5" default="" label="VMPAYMENT_TATRAPAY_KEY"
+                description="VMPAYMENT_TATRAPAY_KEY_TIP" required="true"/>
+			  <field name="rem" type="text" default="" label="VMPAYMENT_TATRAPAY_REM"
+                description="VMPAYMENT_TATRAPAY_REM_TIP" required="true"/>
+				<field name="currency" type="list" default="978" label="VMPAYMENT_TATRAPAY_CURRENCY"
+                description="VMPAYMENT_TATRAPAY_CURRENCY_TIP">
+          <option value="978">EUR</option>
+        </field>
+      </fieldset>
+      
+      <fieldset name="order_status">
+        <field type="vmtitle" default="VMPAYMENT_TATRAPAY_ORDER_STATUS_SECTION" description=""/>
+        <field name="status_pending" type="vmorderstate" scope="com_virtuemart" default="P"
+                label="VMPAYMENT_TATRAPAY_STATUS_PENDING" description="VMPAYMENT_TATRAPAY_STATUS_PENDING_TIP"/>
+        <field name="status_success" type="vmorderstate" scope="com_virtuemart" default="C"
+                label="VMPAYMENT_TATRAPAY_STATUS_SUCCESS" description="VMPAYMENT_TATRAPAY_STATUS_SUCCESS_TIP"/>
+        <field name="status_failed" type="vmorderstate" scope="com_virtuemart" default="X"
+                label="VMPAYMENT_TATRAPAY_STATUS_FAILED" description="VMPAYMENT_TATRAPAY_STATUS_FAILED_TIP"/>
+        <field name="status_tout" type="vmorderstate" scope="com_virtuemart" default="U"
+                label="VMPAYMENT_TATRAPAY_STATUS_TOUT" description="VMPAYMENT_TATRAPAY_STATUS_TOUT_TIP"/>
+      </fieldset>
+      
+      <fieldset name="template">
+        <field type="vmtitle" default="VMPAYMENT_TATRAPAY_PAYMENT_SETTINGS_SECTION"/>
+        <field name="payment_logos" type="vmfiles" directory="/images/virtuemart/payment"
+                hide_none="1" label="VMPAYMENT_TATRAPAY_LOGO"
+                size="40" default="tatrapay-icon.png"
+                description="VMPAYMENT_TATRAPAY_LOGO_TIP"/>
+      </fieldset>
+      
+      <fieldset name="restrictions" >
+        <field type="vmtitle" default="VMPAYMENT_TATRAPAY_PAYMENT_RESTRICTIONS_SECTION"/>
+        <field name="countries" multiple="true" type="vmcountries" scope="com_virtuemart" default=""
+                label="VMPAYMENT_TATRAPAY_COUNTRIES" description="VMPAYMENT_TATRAPAY_COUNTRIES_TIP"/>
+        <field name="min_amount" type="text" label="VMPAYMENT_TATRAPAY_MIN_AMOUNT"
+                description="VMPAYMENT_TATRAPAY_MIN_AMOUNT_TIP"/>
+        <field name="max_amount" type="text" label="VMPAYMENT_TATRAPAY_MAX_AMOUNT"
+                description="VMPAYMENT_TATRAPAY_MAX_AMOUNT_TIP"/>
+      </fieldset>
+      <fieldset name="fee">
+        <field type="vmtitle" default="VMPAYMENT_TATRAPAY_PAYMENT_FEE_SECTION"/>
+        <field name="cost_per_transaction" type="text" label="VMPAYMENT_TATRAPAY_COST_PER_TRANSACTION"
+                description="VMPAYMENT_TATRAPAY_COST_PER_TRANSACTION_TIP"/>
+        <field name="cost_percent_total" type="text" label="VMPAYMENT_TATRAPAY_COST_PERCENT_TOTAL"
+                description="VMPAYMENT_TATRAPAY_COST_PERCENT_TOTAL_TIP"/>
+        <field name="tax_id" type="vmtaxes" scope="com_virtuemart" label="VMPAYMENT_TATRAPAY_TAX"
+                description="VMPAYMENT_TATRAPAY_TAX_TIP"/>
+      </fieldset>
+    </fields>
+  </vmconfig>
+</extension>
